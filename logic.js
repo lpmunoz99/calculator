@@ -51,6 +51,31 @@ clear.addEventListener("click", () => {
     negative = "";
 });
 
+//DOM for delete button
+const dlete = document.querySelector("#delete");
+dlete.addEventListener("click", () => {
+    let textArray = [...display.textContent];
+    textArray.splice(-1);
+    let newText = textArray.join("");
+    display.textContent = newText;
+    if (num1 === ""){
+        negative = "";
+    }
+    else if(num1 != "" && operator === ""){
+        num1 = newText;
+        negative = "";
+    } 
+    else if (num1 != "" && operator != "" && num2 === "") {
+        operator = "";
+    } else if (num1 != "" && operator != "" && num2 != ""){
+        let temp = [...num2];
+        temp.splice(-1);
+        let newTemp = temp.join("");
+        num2 = newTemp;
+    }
+    
+});
+
 //DOM for number selection and display population
 const numbers = document.querySelectorAll(".btn-number");
 const display = document.querySelector("#display");

@@ -20,7 +20,7 @@
 }
 
 h1{
-    color: white;
+    color: rgb(238, 145, 70);
     font-size: 40px;
 }
 
@@ -31,13 +31,13 @@ body{
     align-items: center;
     height: 100vh;
     width: 100%;
-    background-color: rgb(27, 25, 25);
+    background-color: rgb(43, 204, 216);
 }
 
 #calc-container{
-    border-radius: 8px;
+    border-radius: 4px;
     border-style: solid;
-    border-color: rgb(223, 214, 214);
+    border-color: rgb(165, 112, 69);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,7 +45,7 @@ body{
     align-items: center;
     height: 500px;
     width:375px;
-    background-color: gray;
+    background-color: rgb(250, 149, 17);
 }
 
 #display-container{
@@ -80,22 +80,22 @@ button{
 
 .btn-equal{
     width: 48%;
-    background-color: rgb(179, 178, 178);
+    background-color: rgb(228, 224, 21);
     color: white;
 }
 
 #ac{
-    background-color: rgb(179, 178, 178);
+    background-color: rgb(255, 0, 0);
     color: white;
 }
 
 #delete{
     width: 48%;
-    background-color: rgb(179, 178, 178);
+    background-color: rgb(0, 221, 37);
     color: white;
 }
 
 .btn-operator{
-    background-color: rgb(179, 178, 178);
+    background-color: rgb(228, 224, 21);
     color: white;
 }
