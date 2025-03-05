@@ -51,13 +51,22 @@ numbers.forEach((number) => {
                 if(negative === ""){
                     num1 = AddNum1(number.textContent);
                     display.textContent = num1;
+                    console.log(negative);
                 } else if (negative != "") {
                     if(num1.includes(negative)){
                         num1 = AddNum1(number.textContent);
                         display.textContent = num1;
+                        console.log(negative);
                     }else{
-                        num1 = negative + AddNum1(number.textContent);
-                        display.textContent = num1;
+                        if(negative === "-"){
+                            num1 = negative + AddNum1(number.textContent);
+                            display.textContent = num1;
+                            console.log(negative);
+                        } else {
+                            num1 = AddNum1(number.textContent);
+                            display.textContent = num1;
+                        }
+                        
                     }
                 }
             }
@@ -124,6 +133,69 @@ function AddOperator(op){
     return operator = op;
 }
 
+//Negative function
 function AddNegative(n){
     return negative = n;
+}
+
+//DOM for equal button
+const equal = document.querySelector(".btn-equal");
+equal.addEventListener("click", () => {
+    total = operate(num1, num2, operator);
+    if (Number.isInteger(total)){
+        display.textContent = total;
+        num1 = total;
+        num2 = "";
+        operator = "";
+    } else {
+        display.textContent = total.toFixed(1);
+        num1 = total.toFixed(1);
+        num2 = "";
+        operator = "";
+    }
+});
+
+//Functions for operations
+
+function sum(num1, num2){
+    return num1 + num2;
+}
+ 
+function res(num1, num2){
+     return num1 - num2;
+}
+ 
+function mul(num1, num2){
+     return num1 * num2;
+}
+ 
+function div(num1, num2){
+     if(num2 == 0){
+         alert("You cannot divide by zero!");
+     } else {
+         return num1 / num2;
+     }
+     
+}
+
+function operate(num1, num2, operator){
+    let result;
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    switch (operator) {
+        case '+':
+            result = sum(num1, num2);
+            break;
+        case '-':
+            result = res(num1, num2);
+            break;
+        case '/':
+            result = div(num1, num2);
+            break;
+        case '*':
+            result = mul(num1, num2);
+            break;
+        default:
+    }
+    return result;
 }
