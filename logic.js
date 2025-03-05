@@ -48,8 +48,18 @@ numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if(operator === ""){
             if (num1.length <= 6){
-                num1 = AddNum1(number.textContent);
-                display.textContent = num1;
+                if(negative === ""){
+                    num1 = AddNum1(number.textContent);
+                    display.textContent = num1;
+                } else if (negative != "") {
+                    if(num1.includes(negative)){
+                        num1 = AddNum1(number.textContent);
+                        display.textContent = num1;
+                    }else{
+                        num1 = negative + AddNum1(number.textContent);
+                        display.textContent = num1;
+                    }
+                }
             }
                 
         } else {
@@ -70,4 +80,50 @@ function AddNum1(num){
 //Num2 function
 function AddNum2(num){
     return num2 += num;
+}
+
+
+//DOM to add operator
+const operators = document.querySelectorAll(".btn-operator");
+operators.forEach((op) => {
+    op.addEventListener("click", () => {
+
+        if(operator === "" && num1 != ""){
+            operator = AddOperator(op.textContent);
+            display.textContent = num1 + operator;
+        } else if (num1 === "" && operator === ""){
+            negative = AddNegative(op.textContent);
+            if (negative != "-"){
+                display.textContent = "";
+            }else {
+                display.textContent = negative;
+            }
+        } else if (num1 != "" && operator != "" && num2 != ""){
+            total = operate (num1, num2, operator);
+            if (Number.isInteger(total)){
+                display.textContent = total;
+                num1 = total;
+                num2 = "";
+                operator = AddOperator(op.textContent);
+            } else {
+                display.textContent = total.toFixed(1);
+                num1 = total.toFixed(1);
+                num2 = "";
+                operator = AddOperator(op.textContent);
+            }
+
+            console.log(num1);
+            console.log(operator);
+            console.log(num2);
+        }
+    });
+});
+
+//Operator function
+function AddOperator(op){
+    return operator = op;
+}
+
+function AddNegative(n){
+    return negative = n;
 }
