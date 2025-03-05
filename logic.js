@@ -40,6 +40,17 @@ let operator = "";
 let negative = "";
 let result = 0;
 
+//DOM for clear button
+const clear = document.querySelector("#ac");
+clear.addEventListener("click", () => {
+    display.textContent = "";
+    total = "";
+    num1 = "";
+    num2 = "";
+    operator = "";
+    negative = "";
+});
+
 //DOM for number selection and display population
 const numbers = document.querySelectorAll(".btn-number");
 const display = document.querySelector("#display");
