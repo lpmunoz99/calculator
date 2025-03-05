@@ -1,11 +1,11 @@
+/*
+
 let a = prompt("Please enter the first number: ");
 let b = prompt("Please enter the operator: ");
 let c = prompt("Please enter the second number: ");
 let num1 = parseInt(a);
 let operator = b;
 let num2 = parseInt(c);
-
-//Function to do operation depending on operator
 
 function operate(num1, num2, operator){
     let result;
@@ -31,25 +31,43 @@ function operate(num1, num2, operator){
 
 console.log(operate(num1, num2, operator));
 
-//Functions for operations
+*/
 
-function sum(num1, num2){
-    return num1 + num2;
+//Global variables
+let num1 = "";
+let num2 = "";
+let operator = "";
+let negative = "";
+let result = 0;
+
+//DOM for number selection and display population
+const numbers = document.querySelectorAll(".btn-number");
+const display = document.querySelector("#display");
+
+numbers.forEach((number) => {
+    number.addEventListener("click", () => {
+        if(operator === ""){
+            if (num1.length <= 6){
+                num1 = AddNum1(number.textContent);
+                display.textContent = num1;
+            }
+                
+        } else {
+            if (num2.length <= 6){
+                num2 = AddNum2(number.textContent);
+                display.textContent = num1 + operator + num2;
+            }
+        }
+    });
+});
+
+//Num1 function
+function AddNum1(num){
+        return num1 += num;
+
 }
- 
-function res(num1, num2){
-     return num1 - num2;
-}
- 
-function mul(num1, num2){
-     return num1 * num2;
-}
- 
-function div(num1, num2){
-     if(num2 == 0){
-         alert("You cannot divide by zero!");
-     } else {
-         return num1 / num2;
-     }
-     
+
+//Num2 function
+function AddNum2(num){
+    return num2 += num;
 }
