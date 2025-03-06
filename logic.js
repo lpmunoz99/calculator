@@ -38,6 +38,7 @@ let num1 = "";
 let num2 = "";
 let operator = "";
 let negative = "";
+let dDot = "";
 let result = 0;
 
 //DOM for clear button
@@ -79,6 +80,7 @@ dlete.addEventListener("click", () => {
 //DOM for number selection and display population
 const numbers = document.querySelectorAll(".btn-number");
 const display = document.querySelector("#display");
+const dot = document.querySelector(".btn-dot");
 
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
@@ -106,7 +108,6 @@ numbers.forEach((number) => {
                     }
                 }
             }
-                
         } else {
             if (num2.length <= 6){
                 num2 = AddNum2(number.textContent);
@@ -119,12 +120,37 @@ numbers.forEach((number) => {
 //Num1 function
 function AddNum1(num){
         return num1 += num;
-
 }
 
 //Num2 function
 function AddNum2(num){
     return num2 += num;
+}
+ //DOM for dot
+dot.addEventListener("click", () => {
+    if(operator === "" && num2 === ""){
+        if(!num1.includes(".")){
+            dDot = AddDOt(dot.textContent);
+            num1 = num1 + dDot;
+            display.textContent = num1;
+        } else{
+            display.textContent += "";
+        }
+    } else if (operator != "" && num1 != ""){
+        if(!num2.includes(".")){
+            dDot = AddDOt(dot.textContent);
+            num2 = num2 + dDot;
+            display.textContent = num1 + operator + num2;
+        } else{
+            display.textContent += "";
+        }
+    }
+
+});
+
+//dot function
+function AddDOt (d){
+    return dDot = d;
 }
 
 
@@ -132,7 +158,7 @@ function AddNum2(num){
 const operators = document.querySelectorAll(".btn-operator");
 operators.forEach((op) => {
     op.addEventListener("click", () => {
-
+        
         if(operator === "" && num1 != ""){
             operator = AddOperator(op.textContent);
             display.textContent = num1 + operator;
@@ -177,6 +203,7 @@ function AddNegative(n){
 //DOM for equal button
 const equal = document.querySelector(".btn-equal");
 equal.addEventListener("click", () => {
+    if(num1 != "" && operator != "" && num2 != ""){
     total = operate(num1, num2, operator);
     if (Number.isInteger(total)){
         display.textContent = total;
@@ -189,6 +216,7 @@ equal.addEventListener("click", () => {
         num2 = "";
         operator = "";
     }
+}
 });
 
 //Functions for operations
@@ -235,3 +263,4 @@ function operate(num1, num2, operator){
     }
     return result;
 }
+
