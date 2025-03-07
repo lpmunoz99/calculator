@@ -39,7 +39,7 @@ let num2 = "";
 let operator = "";
 let negative = "";
 let dDot = "";
-let result = 0;
+let result = "";
 
 //DOM for clear button
 const clear = document.querySelector("#ac");
@@ -201,7 +201,7 @@ operators.forEach((op) => {
             total = operate (num1, num2, operator);
             if (Number.isInteger(total)){
                 display.textContent = total;
-                num1 = total;
+                num1 = total.toString();
                 num2 = "";
                 operator = AddOperator(op.textContent);
             } else {
@@ -235,7 +235,7 @@ equal.addEventListener("click", () => {
     total = operate(num1, num2, operator);
     if (Number.isInteger(total)){
         display.textContent = total;
-        num1 = total;
+        num1 = total.toString();
         num2 = "";
         operator = "";
     } else {
@@ -244,6 +244,11 @@ equal.addEventListener("click", () => {
         num2 = "";
         operator = "";
     }
+
+    console.log("num1 es" + num1);
+            console.log(operator);
+            console.log(num2);
+            console.log(negative);
 }
 });
 
