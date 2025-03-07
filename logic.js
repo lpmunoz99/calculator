@@ -137,6 +137,7 @@ numbers.forEach((number) => {
                         if(negative === "-"){
                             num2 = negative + AddNum2(number.textContent);
                             display.textContent = num2;
+                            negative = "";
                             console.log(negative);
                         } else {
                             num2 = AddNum2(number.textContent);
