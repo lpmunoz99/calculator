@@ -68,6 +68,7 @@ dlete.addEventListener("click", () => {
     } 
     else if (num1 != "" && operator != "" && num2 === "") {
         operator = "";
+        display.textContent = num1 + operator;
     } else if (num1 != "" && operator != "" && num2 != ""){
         let temp = [...num2];
         temp.splice(-1);
@@ -110,8 +111,28 @@ numbers.forEach((number) => {
             }
         } else {
             if (num2.length <= 6){
-                num2 = AddNum2(number.textContent);
-                display.textContent = num1 + operator + num2;
+                if(negative === ""){
+                    num2 = AddNum2(number.textContent);
+                    display.textContent = num2;
+                    console.log(negative);
+                } else if (negative != "") {
+                    if(num2.includes(negative)){
+                        num2 = AddNum2(number.textContent);
+                        display.textContent = num2;
+                        console.log(negative);
+                    }else{
+                        if(negative === "-"){
+                            num2 = negative + AddNum2(number.textContent);
+                            display.textContent = num2;
+                            console.log(negative);
+                        } else {
+                            num2 = AddNum2(number.textContent);
+                            display.textContent = num2;;
+                        }
+                        
+                    }
+                }
+                
             }
         }
     });
@@ -140,7 +161,7 @@ dot.addEventListener("click", () => {
         if(!num2.includes(".")){
             dDot = AddDOt(dot.textContent);
             num2 = num2 + dDot;
-            display.textContent = num1 + operator + num2;
+            display.textContent = num2;
         } else{
             display.textContent += "";
         }
@@ -169,6 +190,13 @@ operators.forEach((op) => {
             }else {
                 display.textContent = negative;
             }
+        } else if (num1 != "" && operator === "*" || operator === "/"){
+                negative = AddNegative(op.textContent);
+                if (negative != "-"){
+                    display.textContent += "";
+                }else {
+                    display.textContent = negative;
+                }
         } else if (num1 != "" && operator != "" && num2 != ""){
             total = operate (num1, num2, operator);
             if (Number.isInteger(total)){
