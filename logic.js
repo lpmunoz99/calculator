@@ -67,13 +67,25 @@ dlete.addEventListener("click", () => {
         negative = "";
     } 
     else if (num1 != "" && operator != "" && num2 === "") {
-        operator = "";
-        display.textContent = num1 + operator;
+        if (negative === ""){
+            operator = "";
+            display.textContent = num1 + operator;
+        }else {
+            negative = "";
+            display.textContent = num1 + operator;
+        }
+        
     } else if (num1 != "" && operator != "" && num2 != ""){
-        let temp = [...num2];
-        temp.splice(-1);
-        let newTemp = temp.join("");
-        num2 = newTemp;
+        if(num2.length <= 1){
+            num2 = "";
+            display.textContent = num1 + operator;
+        }else{
+            let temp = [...num2];
+            temp.splice(-1);
+            let newTemp = temp.join("");
+            num2 = newTemp;
+            console.log(num2);
+        }
     }
     
 });
@@ -100,6 +112,7 @@ numbers.forEach((number) => {
                         if(negative === "-"){
                             num1 = negative + AddNum1(number.textContent);
                             display.textContent = num1;
+                            negative = "";
                             console.log(negative);
                         } else {
                             num1 = AddNum1(number.textContent);
@@ -118,7 +131,7 @@ numbers.forEach((number) => {
                 } else if (negative != "") {
                     if(num2.includes(negative)){
                         num2 = AddNum2(number.textContent);
-                        display.textContent = num2;
+                        display.textContent = negative + num2;
                         console.log(negative);
                     }else{
                         if(negative === "-"){
@@ -127,7 +140,7 @@ numbers.forEach((number) => {
                             console.log(negative);
                         } else {
                             num2 = AddNum2(number.textContent);
-                            display.textContent = num2;;
+                            display.textContent = num2;
                         }
                         
                     }
